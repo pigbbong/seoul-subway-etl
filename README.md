@@ -125,7 +125,4 @@ Power BI
 Power BI에서 BigQuery 데이터를 기반으로  
 노선별 평균 승하차 인원을 트리맵(Tree Map)으로 시각화하였습니다.
 
-| ![Power BI Visualization](https://github.com/pigbbong/seoul-subway-etl/assets/123456789/abcd1234efgh5678) |
-| *Power BI로 구현한 노선별 평균 승하차 인원 트리맵 예시* |
-
-> 📎 [시각화 상세 보기 (GitHub Issue)](https://github.com/pigbbong/seoul-subway-etl/issues/1)
+| ![Power BI Visualization]([https://github.com/pigbbong/seoul-subway-etl/assets/123456789/abcd1234efgh5678](https://private-user-images.githubusercontent.com/156537276/508682790-1ea4c0de-4e5c-4ba2-b28d-a02dbffbd404.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjIwNjYyNzcsIm5iZiI6MTc2MjA2NTk3NywicGF0aCI6Ii8xNTY1MzcyNzYvNTA4NjgyNzkwLTFlYTRjMGRlLTRlNWMtNGJhMi1iMjhkLWEwMmRiZmZiZDQwNC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUxMTAyJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MTEwMlQwNjQ2MTdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0yZDZlNWRhMDExOGZkZjI1OTA0NDEyZGQyZWFlMzExNGNiZGFmNjViNzE1NjBiYTgxNjM2NTk1ZjA3Mzc0MTkzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.ExA5RQvJQHJMfpYETyccPAs7mdchtTF8PeLzB4HB6JE)) |
