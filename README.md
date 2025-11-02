@@ -81,3 +81,40 @@ docker exec -it oracle-db sqlplus system/subway@//localhost:1521/freepdb1
 7-3. subway_pipeline DAG가 활성화되어 있는지 확인
 7-4. 수동 실행 또는 매월 4일 12:30 KST 스케줄 자동 실행 확인
 ```
+
+### BigQuery
+``` plaintext
+1. Google Cloud Console -> 새 프로젝트 만들기 ex)이름 예: subway-475903
+
+2. 좌측 메뉴 → “BigQuery” 검색 → “API 사용 설정(Enable)” 클릭
+
+3. Dataset 생성
+  · 프로젝트 내 → “+ Dataset 만들기” 클릭
+  · Dataset ID: subway
+  · 데이터 위치(Location): US (Power BI 연동은 US 리전에 있어야 함)
+
+4. 서비스 계정 생성 (Airflow 접근용)
+  · 메뉴 -> IAM & Admin -> 서비스 계정(Service Accounts)
+  · + 서비스 계정 만들기(Create Service Account) 클릭
+  · 이름: subway-etl
+
+5. 서비스 계정 권한(Role) 부여
+다음 역할 4개 추가:
+  · BigQuery 관리자
+  · BigQuery 데이터 편집자
+  · BigQuery 데이터 뷰어
+  · BigQuery 작업 사용자
+
+6. JSON 키 생성 (Airflow용)
+  · 생성한 subway-etl 계정 -> 키(Keys) 탭 -> “새 키 추가(Create new key)”
+  · 형식: JSON -> 만들기(Create)
+```
+
+Power BI
+``` plaintext
+1. 데이터 가져오기에서 Google Bigquery 선택
+
+2. BigQuery에서 생성한 프로젝트 이메일과 서비스 계정 JSON 키를 이용해 연결
+
+3. 데이터 선택 및 로드
+```
