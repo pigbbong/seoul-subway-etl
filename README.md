@@ -12,7 +12,6 @@ ETL 파이프라인을 자동화한 프로젝트입니다.
 매월 데이터를 자동으로 수집(crawling)하고,  
 Oracle DB에 적재 후 BigQuery로 동기화하여 시각화 도구(Power BI)와 연동하는 과정을 포함합니다.
 
-- **데이터 출처**: [서울 열린데이터 광장 - 지하철 승하차 인원](https://data.seoul.go.kr/dataList/OA-12914/S/1/datasetView.do)
 - **주요 구성 요소**:
   - 🧩 **Airflow**: ETL 스케줄링 및 자동화
   - 🧱 **Oracle XE**: 임시 스테이징 및 파티셔닝 관리
@@ -126,3 +125,19 @@ Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인
 
 
 ![Power BI Visualization](https://github.com/user-attachments/assets/1ea4c0de-4e5c-4ba2-b28d-a02dbffbd404)
+
+
+## 🧩 사용 기술 스택
+
+- **Language**: Python 3.10  
+- **Orchestration**: Apache Airflow 2.9.3  
+- **Database**: Oracle XE 21c (Docker)  
+- **Data Warehouse**: Google BigQuery  
+- **Visualization**: Power BI  
+- **Containerization**: Docker, Docker Compose  
+
+
+## 🧭 참고 정보
+
+- **데이터 출처**: [서울 열린데이터 광장 - 지하철 승하차 인원](https://data.seoul.go.kr/dataList/OA-12914/S/1/datasetView.do)
+- **프로젝트 저장소**: [GitHub Repository](https://github.com/pigbbong/seoul-subway-etl)
