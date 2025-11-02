@@ -125,8 +125,6 @@ Power BI
 Power BI에서 BigQuery 데이터를 기반으로  
 노선별 평균 승하차 인원을 트리맵(Tree Map)으로 시각화하였습니다.
 
-| 시각화 미리보기 |
-|:--:|
 | ![Power BI Visualization](https://github.com/pigbbong/seoul-subway-etl/assets/123456789/abcd1234efgh5678) |
 | *Power BI로 구현한 노선별 평균 승하차 인원 트리맵 예시* |
 
