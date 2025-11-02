@@ -114,7 +114,8 @@ Power BI
 ``` plaintext
 1. 데이터 가져오기에서 Google Bigquery 선택
 
-2. BigQuery에서 생성한 프로젝트 이메일과 서비스 계정 JSON 키를 이용해 연결
+2. Google Workspace(기업용 Google 계정) 또는 BigQuery 서비스 계정(JSON 키) 을 이용해 연결
+  -> Power BI에서는 개인 Gmail 계정(@gmail.com) 은 BigQuery 연동이 불가
 
 3. 데이터 선택 및 로드
 ```
