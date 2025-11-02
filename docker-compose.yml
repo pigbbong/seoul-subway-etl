@@ -1,0 +1,83 @@
+version: "3.9"
+
+services:
+  # Airflow 메타데이터 DB (Postgres)
+  postgres:
+    image: postgres:13
+    container_name: airflow-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - subway-net
+
+  # Oracle XE (ETL 대상)
+  oracle-db:
+    image: gvenzl/oracle-xe:21-slim
+    container_name: oracle-db
+    environment:
+      ORACLE_PASSWORD: subway
+      APP_USER: subway
+      APP_USER_PASSWORD: subway
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./oracle-data:/opt/oracle/oradata
+      - ./oracle:/container-entrypoint-initdb.d
+    networks:
+      - subway-net
+
+  # Airflow 웹서버
+  airflow-webserver:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: airflow-etl:latest
+    container_name: airflow-webserver
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__FERNET_KEY=3DQNg04bxK4hHktJfN1p8aIRq5QqG9Wmr-Vy_QnDhqU=
+      - AIRFLOW__WEBSERVER__SECRET_KEY=my_super_secret_key_1234
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=false
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - LD_LIBRARY_PATH=/opt/oracle/instantclient_21_9
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./etl:/app/etl
+      - ./dataset:/app/dataset
+      - ./subway-475903-ef446b9a7ab8.json:/app/subway-475903-ef446b9a7ab8.json
+    ports:
+      - "8080:8080"
+    command: >
+      bash -c "rm -f /opt/airflow/airflow-webserver.pid &&
+              airflow db upgrade &&
+              exec airflow webserver"
+    networks:
+      - subway-net
+
+  # Airflow 스케줄러
+  airflow-scheduler:
+    image: airflow-etl:latest
+    container_name: airflow-scheduler
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__FERNET_KEY=3DQNg04bxK4hHktJfN1p8aIRq5QqG9Wmr-Vy_QnDhqU=
+      - AIRFLOW__WEBSERVER__SECRET_KEY=my_super_secret_key_1234
+      - LD_LIBRARY_PATH=/opt/oracle/instantclient_21_9
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./etl:/app/etl
+      - ./dataset:/app/dataset
+      - ./subway-475903-ef446b9a7ab8.json:/app/subway-475903-ef446b9a7ab8.json
+    command: scheduler
+    networks:
+      - subway-net
+
+networks:
+  subway-net:
+    driver: bridge
