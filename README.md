@@ -12,13 +12,37 @@ ETL 파이프라인을 자동화한 프로젝트입니다.
 매월 데이터를 자동으로 수집(crawling)하고,  
 Oracle DB에 적재 후 BigQuery로 동기화하여 시각화 도구(Power BI)와 연동하는 과정을 포함합니다.
 
-- **주요 구성 요소**:
+- **주요 구성 요소 및 선택 이유**:
   - 🧩 **Airflow**: ETL 스케줄링 및 자동화
+      매월 서울시 열린데이터 광장의 “지하철 승하차 인원 데이터”를 자동으로 수집하고,
+      Oracle → BigQuery 적재 과정을 순차적으로 실행하기 위해 사용했습니다.
+      DAG(Directed Acyclic Graph) 기반으로 각 단계를 정
   - 🧱 **Oracle XE**: 임시 스테이징 및 파티셔닝 관리
   - ☁️ **BigQuery**: 데이터 저장 및 Power BI 연동
   - 📊 **Power BI**: 시각화 및 대시보드 제작
 
 ---
+
+## 🧭 데이터 흐름 요약
+
+```plaintext
+[서울 열린데이터 광장 API]
+        ↓
+[Airflow DAG 실행]
+        ↓
+[Oracle Staging Table]
+  └─ 데이터 품질 검증 (음수/NULL 제거, 컬럼 형식 확인)
+        ↓
+[Oracle Main Table]
+  └─ 월별 파티션 교체 및 정제 데이터 확정
+        ↓
+[BigQuery Dataset]
+  └─ Oracle → BigQuery 연동 후 Power BI 연결
+        ↓
+[Power BI Dashboard]
+  └─ 노선/월별 승하차 추이, 혼잡도 분석 시각화
+
+```
 
 ## 📁 폴더 구조
 
