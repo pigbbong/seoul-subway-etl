@@ -21,7 +21,7 @@ Oracle → BigQuery 적재 과정을 순차적으로 실행하기 위해 사용�
 DAG(Directed Acyclic Graph) 기반으로 각 단계를 정의해,
 데이터 수집·정제·적재를 자동화할 수 있습니다.
 
-### 🧱 Oracle XE — 데이터 정제 및 스테이징(DB Layer)
+### 🧱 Oracle XE — 데이터 정제 및 스테이징
 BigQuery 무료 버전은 데이터 조회(read) 는 가능하지만 DML(INSERT/UPDATE) 작업이 제한되어 있습니다.
 따라서 BigQuery에 바로 적재하지 않고,
 중간 계층인 Oracle을 사용해 데이터를 정제·검증한 뒤 적재했습니다.
