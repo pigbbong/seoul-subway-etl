@@ -178,7 +178,7 @@ Power BI
 
 ## 🎨 Power BI 시각화
 
-Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인원을 트리맵(Tree Map)으로 시각화하였습니다.
+Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인원을 트리맵(Tree Map)으로 간단하게 시각화해본 사진입니다.
 
 
 ![Power BI Visualization](https://github.com/user-attachments/assets/1ea4c0de-4e5c-4ba2-b28d-a02dbffbd404)
