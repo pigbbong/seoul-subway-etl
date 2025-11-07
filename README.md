@@ -198,4 +198,3 @@ Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인
 ## 🧭 참고 정보
 
 - **데이터 출처**: [서울 열린데이터 광장 - 지하철 승하차 인원](https://data.seoul.go.kr/dataList/OA-12914/S/1/datasetView.do)
-- **프로젝트 저장소**: [GitHub Repository](https://github.com/pigbbong/seoul-subway-etl)
