@@ -69,8 +69,9 @@ Airflow–Oracle 간 의존성 및 라이브러리 충돌 문제를 최소화했
         ↓
 [Power BI Dashboard]
   └─ 노선/월별 승하차 추이, 혼잡도 분석 시각화
-
 ```
+
+---
 
 ## 📁 폴더 구조
 
@@ -95,6 +96,8 @@ seoul_subway/
 ├── Dockerfile                 # Airflow 컨테이너 빌드 설정
 └── requirements.txt           # 파이썬 의존성 패키지
 ```
+
+---
 
 ## ⚙️ 초기 세팅 과정
 
@@ -171,6 +174,8 @@ Power BI
 3. 데이터 선택 및 로드
 ```
 
+---
+
 ## 🎨 Power BI 시각화
 
 Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인원을 트리맵(Tree Map)으로 시각화하였습니다.
@@ -178,6 +183,7 @@ Power BI에서 BigQuery 데이터를 기반으로 노선별 평균 승하차 인
 
 ![Power BI Visualization](https://github.com/user-attachments/assets/1ea4c0de-4e5c-4ba2-b28d-a02dbffbd404)
 
+---
 
 ## 🧩 사용 기술 스택
 
