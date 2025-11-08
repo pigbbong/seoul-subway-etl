@@ -1,4 +1,4 @@
-# 🏙️ Seoul Subway ETL Pipeline
+# Seoul Subway ETL Pipeline
 
 서울시 지하철 승하차 인원 데이터를  
 **Oracle → BigQuery → Power BI**로 연동하여  
