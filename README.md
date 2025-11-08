@@ -24,6 +24,7 @@ ETL 파이프라인을 자동화한 프로젝트입니다.
         ↓
 [Power BI Dashboard]
   └─ BigQuery로부터 데이터를 로드 후 시각화
+```
 
 ---
 
