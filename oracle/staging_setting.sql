@@ -38,7 +38,7 @@ CREATE OR REPLACE PROCEDURE MANAGE_SUBWAY_PARTITIONS IS
     v_has_max         NUMBER := 0;
 BEGIN
     -- 지난달 기준으로 파티션명 계산
-    v_prev_month := ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), -1);  -- 만약 다른 월별의 데이터를 삽입하고자 할 때는 ADD_MONTHS 인자를 수정하고 컴파일 할 것
+    v_prev_month := ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), -1);
     v_prev_month_str := TO_CHAR(v_prev_month, 'YYYYMM');
     v_partition_name := 'P' || v_prev_month_str;
 
@@ -93,7 +93,7 @@ CREATE OR REPLACE PROCEDURE EXCHANGE_SUBWAY_PARTITION IS
     v_partition_name  VARCHAR2(10);
     v_sql             VARCHAR2(4000);
 BEGIN
-    v_prev_month := ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), -1);  -- 만약 다른 월별의 데이터를 삽입하고자 할 때는 ADD_MONTHS 인자를 수정하고 컴파일 할 것
+    v_prev_month := ADD_MONTHS(TRUNC(SYSDATE, 'MONTH'), -1);
     v_prev_month_str := TO_CHAR(v_prev_month, 'YYYYMM');
     v_partition_name := 'P' || v_prev_month_str;
 
