@@ -64,35 +64,34 @@ df = validate_dataframe(df)
 conn = cx_Oracle.connect("subway", "subway", "oracle-db:1521/xepdb1")
 cursor = conn.cursor()
 
-# 세션 스키마를 SUBWAY로 고정
-cursor.execute("ALTER SESSION SET CURRENT_SCHEMA = SUBWAY")
-
-# 데이터 MERGE (중복 방지)
-for _, row in df.iterrows():
-    cursor.execute("""
-        MERGE INTO SUBWAY_TMP t
-        USING (
-            SELECT TO_DATE(:1, 'YYYYMMDD') AS USE_YMD,
-                   :2 AS SBWY_ROUT_LN_NM,
-                   :3 AS SBWY_STNS_NM,
-                   :4 AS GTON_TNOPE,
-                   :5 AS GTOFF_TNOPE
-            FROM DUAL
-        ) s
-        ON (t.USE_YMD = s.USE_YMD AND
-            t.SBWY_STNS_NM = s.SBWY_STNS_NM AND
-            t.SBWY_ROUT_LN_NM = s.SBWY_ROUT_LN_NM)
-        WHEN NOT MATCHED THEN
-            INSERT (USE_YMD, SBWY_ROUT_LN_NM, SBWY_STNS_NM, GTON_TNOPE, GTOFF_TNOPE)
-            VALUES (s.USE_YMD, s.SBWY_ROUT_LN_NM, s.SBWY_STNS_NM, s.GTON_TNOPE, s.GTOFF_TNOPE)
-    """, (
+# 데이터 튜플 리스트 생성
+data_tuples = [
+    (
         str(row['USE_YMD']),
         row['SBWY_ROUT_LN_NM'],
         row['SBWY_STNS_NM'],
         int(row['GTON_TNOPE']),
         int(row['GTOFF_TNOPE'])
-    ))
+    )
+    for _, row in df.iterrows()
+]
 
-conn.commit()
-conn.close()
+sql = """
+INSERT INTO SUBWAY_TMP (USE_YMD, SBWY_ROUT_LN_NM, SBWY_STNS_NM, GTON_TNOPE, GTOFF_TNOPE)
+VALUES (TO_DATE(:1, 'YYYYMMDD'), :2, :3, :4, :5)
+"""
+
+try:
+    cursor.executemany(sql, data_tuples, batcherrors=True)
+    conn.commit()
+    print(f"Oracle 적재 완료 ({len(data_tuples)}건, 파일: {latest_file})")
+except cx_Oracle.IntegrityError:
+    print("중복 데이터 발생 (UNIQUE 제약조건 위반 가능)")
+    conn.rollback()
+except Exception as e:
+    print(f"오류 발생: {e}")
+    conn.rollback()
+finally:
+    conn.close()
+
 print(f"Oracle 적재 완료 ({latest_file})")
