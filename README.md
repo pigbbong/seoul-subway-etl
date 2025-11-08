@@ -164,7 +164,7 @@ docker exec -it oracle-db sqlplus system/subway@//localhost:1521/freepdb1
   · 형식: JSON -> 만들기(Create)
 ```
 
-Power BI
+### Power BI
 ``` plaintext
 1. 데이터 가져오기에서 Google Bigquery 선택
 
