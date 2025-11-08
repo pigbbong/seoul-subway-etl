@@ -68,7 +68,7 @@ Airflow–Oracle 간 의존성 및 라이브러리 충돌 문제를 최소화했
   └─ Oracle → BigQuery 연동 후 Power BI 연결
         ↓
 [Power BI Dashboard]
-  └─ 노선/월별 승하차 추이, 혼잡도 분석 시각화
+  └─ BigQuery로부터 데이터를 로드 후 시각화
 ```
 
 ---
